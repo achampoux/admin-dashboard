@@ -28,6 +28,7 @@ section#header {
 section#sidebar {
     grid-area: sidebar;
     display: grid;
+    grid-template-columns: 1fr;
     gap: 50px;
     padding: 25px;
     align-content: start;
@@ -84,17 +85,24 @@ section#content {
 .trending-card {
     padding: 25px;
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: minmax(75px, 1fr) 3fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas: 
     "trending-icon trending-handle"
     "trending-icon trending-name";
     background: #7D82B8;
     border-radius: 10px;
+    min-width: 250px;
 }
 
 .trending-icon {
     grid-area: trending-icon;
+    margin-right: 10px;
+}
+
+.trending-icon span img {
+    width: 100%;
+    height: 100%;
 }
 
 .trending-handle {
@@ -120,7 +128,7 @@ section#content {
     cursor: pointer;
 }
 
-.project-card:hover {
+.project-card:hover, .announcements-card:hover, .trending-card:hover {
     opacity: 0.8;
     transform: scale(1.01);
 }
@@ -145,18 +153,25 @@ span#dashboard {
     font-weight: 600;
 }
 
-#alert {cursor: pointer;}
+.alert {cursor: pointer;}
 
-#alert:hover {
-    transform: rotate(10deg) scale(1.05);
+.alert:hover {
     opacity: 0.8;
+}
+
+.alert.rotate:hover {
+    transform: rotate(10deg) scale(1.05);
+}
+
+.alert.zoom:hover {
+    transform: scale(1.05);
 }
 
 .icon-text {
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 30px 5fr;
     align-items: center;
-    gap: 25px;
+    gap: 15px;
     font-weight: 400;
     margin: 10px 0;
     cursor: pointer;
@@ -183,19 +198,20 @@ span.profile {
     font-weight: 600;
     font-size: 24px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 30px 1fr;
     gap: 10px;
     text-wrap: nowrap;
     align-items: center;
     justify-items: end;
+    justify-self: flex-end;
+    max-width: 250px;
 }
 
 .header-top {
     display: grid;
-    grid-template-columns: 100px 3fr 100px 1fr;
+    grid-template-columns: 100px 3fr 100px auto;
     align-items: center;
     justify-items: center;
-    gap: 25px;
 }
 
 input#search {
@@ -205,6 +221,8 @@ input#search {
     padding: 5px;
     font-size: 18px;
     background: #7B4B94;
+    max-width: 700px;
+    justify-self: flex-start;
 }
 
 .header-bottom {
